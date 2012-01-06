@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FileTypeDetective</name>
+    </assembly>
+    <members>
+        <member name="T:FileTypeDetective.FileType">
+            <summary>
+            Little data structure to hold information about file types. 
+            Holds information about binary header at the start of the file
+            </summary>
+        </member>
+        <member name="M:FileTypeDetective.FileType.#ctor(System.Nullable{System.Byte}[],System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:FileTypeDetective.FileType"/> class.
+            Default construction with the header offset being set to zero by default
+            </summary>
+            <param name="header">Byte array with header.</param>
+            <param name="extension">String with extension.</param>
+            <param name="mime">The description of MIME.</param>
+        </member>
+        <member name="M:FileTypeDetective.FileType.#ctor(System.Nullable{System.Byte}[],System.Int32,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:FileTypeDetective.FileType"/> struct.
+            Takes the details of offset for the header
+            </summary>
+            <param name="header">Byte array with header.</param>
+            <param name="offset">The header offset - how far into the file we need to read the header</param>
+            <param name="extension">String with extension.</param>
+            <param name="mime">The description of MIME.</param>
+        </member>
+        <member name="T:FileTypeDetective.Detective">
+            <summary>
+            Helper class to identify file type by the file header, not file extension.
+            </summary>
+        </member>
+        <member name="M:FileTypeDetective.Detective.GetFileType(System.IO.FileInfo)">
+            <summary>
+            Read header of a file and depending on the information in the header
+            return object FileType.
+            Return null in case when the file type is not identified. 
+            Throws Application exception if the file can not be read or does not exist
+            </summary>
+            <param name="file">The FileInfo object.</param>
+            <returns>FileType or null not identified</returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.GetFileType(System.String)">
+            <summary>
+            Read header of a file and depending on the information in the header
+            return object FileType.
+            Return null in case when the file type is not identified. 
+            Throws Application exception if the file can not be read.
+            </summary>
+            <param name="FullPath">The full path to the file</param>
+            <returns>FileType object or null if type is not identified</returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.ReadFileHeader(System.IO.FileInfo,System.Int32)">
+            <summary>
+            Reads the file header - first (16) bytes from the file
+            </summary>
+            <param name="file">The file to work with</param>
+            <returns>Array of bytes</returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isFileOfTypes(System.IO.FileInfo,System.Collections.Generic.List{FileTypeDetective.FileType})">
+            <summary>
+            Determines whether provided file belongs to one of the provided list of files
+            </summary>
+            <param name="file">The file.</param>
+            <param name="requiredTypes">The required types.</param>
+            <returns>
+              <c>true</c> if file of the one of the provided types; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isFileOfTypes(System.IO.FileInfo,System.String)">
+            <summary>
+            Determines whether provided file belongs to one of the provided list of files,
+            where list of files provided by string with Comma-Separated-Values of extensions
+            </summary>
+            <param name="file">The file.</param>
+            <param name="requiredTypes">The required types.</param>
+            <returns>
+              <c>true</c> if file of the one of the provided types; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.GetFileTypesByExtensions(System.String)">
+            <summary>
+            Gets the list of FileTypes based on list of extensions in Comma-Separated-Values string
+            </summary>
+            <param name="CSV">The CSV String with extensions</param>
+            <returns>List of FileTypes</returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isType(System.IO.FileInfo,FileTypeDetective.FileType)">
+            <summary>
+            Determines whether the specified file is of provided type
+            </summary>
+            <param name="file">The file.</param>
+            <param name="type">The FileType</param>
+            <returns>
+              <c>true</c> if the specified file is type; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isType(System.String,FileTypeDetective.FileType)">
+            <summary>
+            Determines whether the specified file is of provided type
+            </summary>
+            <param name="fullPath">The full path to the file</param>
+            <param name="type">The type.</param>
+            <returns>
+              <c>true</c> if the specified full path is type; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isPDF(System.IO.FileInfo)">
+            <summary>
+            Determines whether the specified file is PDF.
+            </summary>
+            <param name="file">The file.</param>
+            <returns>
+              <c>true</c> if the specified file is PDF; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isPDF(System.String)">
+            <summary>
+            Determines whether the specified file is PDF.
+            </summary>
+            <param name="fullPath">The full path.</param>
+            <returns>
+              <c>true</c> if the specified full path is PDF; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isWord(System.IO.FileInfo)">
+            <summary>
+            Determines whether the specified file info is ms-word document file
+            </summary>
+            <param name="fileInfo">The file info.</param>
+            <returns>
+              <c>true</c> if the specified file info is doc; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isWord(System.String)">
+            <summary>
+            Determines whether the specified file info is ms-word document file
+            </summary>
+            <param name="fullPath">The full path.</param>
+            <returns>
+              <c>true</c> if the specified full path is PDF; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isZip(System.IO.FileInfo)">
+            <summary>
+            Determines whether the specified file is zip archive
+            </summary>
+            <param name="fileInfo">The file info.</param>
+            <returns>
+              <c>true</c> if the specified file info is zip; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isZip(System.String)">
+            <summary>
+            Determines whether the specified file is zip archive
+            </summary>
+            <param name="fullPath">The full path.</param>
+            <returns>
+              <c>true</c> if the specified full path is zip file; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isExcel(System.IO.FileInfo)">
+            <summary>
+            Determines whether the specified file is MS Excel spreadsheet
+            </summary>
+            <param name="fileInfo">The FileInfo</param>
+            <returns>
+              <c>true</c> if the specified file info is excel; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isExcel(System.String)">
+            <summary>
+            Determines whether the specified file is MS Excel spreadsheet
+            </summary>
+            <param name="fullPath">The full path.</param>
+            <returns>
+              <c>true</c> if the specified full path is excel; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isJpeg(System.IO.FileInfo)">
+            <summary>
+            Determines whether the specified file is JPEG image
+            </summary>
+            <param name="fileInfo">The FileInfo.</param>
+            <returns>
+              <c>true</c> if the specified file info is JPEG; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isJpeg(System.String)">
+            <summary>
+            Determines whether the specified file is JPEG image
+            </summary>
+            <param name="fullPath">The full path to the file</param>
+            <returns>
+              <c>true</c> if the specified full path is JPEG; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isRar(System.IO.FileInfo)">
+            <summary>
+            Determines whether the specified file is RAR-archive.
+            </summary>
+            <param name="fileInfo">The FileInfo.</param>
+            <returns>
+              <c>true</c> if the specified file info is RAR; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isRar(System.String)">
+            <summary>
+            Determines whether the specified file is RAR-archive.
+            </summary>
+            <param name="fullPath">The full path to the file</param>
+            <returns>
+              <c>true</c> if the specified full path is RAR; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isRtf(System.IO.FileInfo)">
+            <summary>
+            Determines whether the specified file is RTF document.
+            </summary>
+            <param name="fileInfo">The FileInfo.</param>
+            <returns>
+              <c>true</c> if the specified file is RTF; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isRtf(System.String)">
+            <summary>
+            Determines whether the specified file is RTF document.
+            </summary>
+            <param name="fullPath">The full path to the file</param>
+            <returns>
+              <c>true</c> if the specified full path is RTF; otherwise, <c>false</c>.
+            </returns>
+        </member>
+    </members>
+</doc>
