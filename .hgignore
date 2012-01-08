@@ -2,3 +2,4 @@ bin
 obj
 Tests/bin
 Tests/obj
+Tests/test-results
