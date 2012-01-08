@@ -14,16 +14,32 @@ namespace FileTypeDetective
 
         // file headers are taken from here:
         //http://www.garykessler.net/library/file_sigs.html
-        public readonly static FileType PDF = new FileType(new byte?[] { 0x25, 0x50, 0x44, 0x46 }, "pdf", "application/pdf");
-        public readonly static FileType WORD = new FileType(new byte?[] { 0xEC, 0xA5, 0xC1, 0x00 }, 512, "doc", "application/msword");
-        public readonly static FileType EXCEL = new FileType(new byte?[] { 0x09, 0x08, 0x10, 0x00, 0x00, 0x06, 0x05, 0x00 }, 512, "xls", "application/excel");
+		//mime types are taken from here:
+		//http://www.webmaster-toolkit.com/mime-types.shtml
+		
+		// MS Office files
+		public readonly static FileType WORD = new FileType(new byte?[] { 0xEC, 0xA5, 0xC1, 0x00 }, 512, "doc", "application/msword");
+		public readonly static FileType EXCEL = new FileType(new byte?[] { 0x09, 0x08, 0x10, 0x00, 0x00, 0x06, 0x05, 0x00 }, 512, "xls", "application/excel");
+		public readonly static FileType PPT = new FileType(new byte?[] {0xFD, 0xFF, 0xFF, 0xFF, null, 0x00, 0x00, 0x00  }, 512, "ppt", "application/mspowerpoint");
+		
+		// common documents
+		public readonly static FileType RTF = new FileType(new byte?[] { 0x7B, 0x5C, 0x72, 0x74, 0x66, 0x31 }, "rtf", "application/rtf");
+		public readonly static FileType PDF = new FileType(new byte?[] { 0x25, 0x50, 0x44, 0x46 }, "pdf", "application/pdf");
+		
+		// grafics
         public readonly static FileType JPEG = new FileType(new byte?[] { 0xFF, 0xD8, 0xFF }, "jpg", "image/jpeg");
-        public readonly static FileType ZIP = new FileType(new byte?[] { 0x50, 0x4B, 0x03, 0x04 }, "zip", "application/x-compressed");
-        public readonly static FileType RAR = new FileType(new byte?[] { 0x52, 0x61, 0x72, 0x21 }, "rar", "application/x-compressed");
-        public readonly static FileType RTF = new FileType(new byte?[] { 0x7B, 0x5C, 0x72, 0x74, 0x66, 0x31 }, "rtf", "application/rtf");
-
-        // all the file types to be put into one list
-        private readonly static List<FileType> types = new List<FileType> { PDF, WORD, EXCEL, JPEG, ZIP, RAR, RTF };
+		public readonly static FileType PNG = new FileType(new byte?[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "png", "image/png");
+		public readonly static FileType GIF = new FileType(new byte?[] { 0x47, 0x49, 0x46, 0x38, null, 0x61 }, "gif", "image/gif");
+		//bmp, tiff
+		
+		
+		public readonly static FileType ZIP = new FileType(new byte?[] { 0x50, 0x4B, 0x03, 0x04 }, "zip", "application/x-compressed");
+		public readonly static FileType RAR = new FileType(new byte?[] { 0x52, 0x61, 0x72, 0x21 }, "rar", "application/x-compressed");
+		
+		
+		// all the file types to be put into one list
+        private readonly static List<FileType> types = new List<FileType> { 
+			PDF, WORD, EXCEL, JPEG, ZIP, RAR, RTF, PNG, PPT};
 
         // number of bytes we read from a file
         private const int MaxHeaderSize = 560;  // some file formats have headers offset to 512 bytes
@@ -374,7 +390,37 @@ namespace FileTypeDetective
         {
             return fullPath.isType(RTF);
         } 
-
+		
+		public static bool isPng(this FileInfo fileInfo)
+		{
+			return fileInfo.isType(PNG);
+		}
+		
+		public static bool isPng(this String fullPath)
+		{
+			return fullPath.isType(PNG);
+		}
+		
+		public static bool isPpt(this FileInfo fileInfo)
+		{
+			return fileInfo.isType(PPT);
+		}
+		
+		public static bool isPpt(this String fullPath)
+		{
+			return fullPath.isType(PPT);
+		}
+		
+		public static bool isGif(this FileInfo fileInfo)
+		{
+			return fileInfo.isType(GIF);
+		}
+		
+		public static bool isGif(this String fullPath)
+		{
+			return fullPath.isType(GIF);
+		}
+		
         #endregion
     }
 
