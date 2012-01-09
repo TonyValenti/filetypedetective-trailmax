@@ -14,32 +14,32 @@ namespace FileTypeDetective
 
         // file headers are taken from here:
         //http://www.garykessler.net/library/file_sigs.html
-		//mime types are taken from here:
-		//http://www.webmaster-toolkit.com/mime-types.shtml
-		
-		// MS Office files
-		public readonly static FileType WORD = new FileType(new byte?[] { 0xEC, 0xA5, 0xC1, 0x00 }, 512, "doc", "application/msword");
-		public readonly static FileType EXCEL = new FileType(new byte?[] { 0x09, 0x08, 0x10, 0x00, 0x00, 0x06, 0x05, 0x00 }, 512, "xls", "application/excel");
-		public readonly static FileType PPT = new FileType(new byte?[] {0xFD, 0xFF, 0xFF, 0xFF, null, 0x00, 0x00, 0x00  }, 512, "ppt", "application/mspowerpoint");
-		
-		// common documents
-		public readonly static FileType RTF = new FileType(new byte?[] { 0x7B, 0x5C, 0x72, 0x74, 0x66, 0x31 }, "rtf", "application/rtf");
-		public readonly static FileType PDF = new FileType(new byte?[] { 0x25, 0x50, 0x44, 0x46 }, "pdf", "application/pdf");
-		
-		// grafics
+        //mime types are taken from here:
+        //http://www.webmaster-toolkit.com/mime-types.shtml
+        
+        // MS Office files
+        public readonly static FileType WORD = new FileType(new byte?[] { 0xEC, 0xA5, 0xC1, 0x00 }, 512, "doc", "application/msword");
+        public readonly static FileType EXCEL = new FileType(new byte?[] { 0x09, 0x08, 0x10, 0x00, 0x00, 0x06, 0x05, 0x00 }, 512, "xls", "application/excel");
+        public readonly static FileType PPT = new FileType(new byte?[] {0xFD, 0xFF, 0xFF, 0xFF, null, 0x00, 0x00, 0x00  }, 512, "ppt", "application/mspowerpoint");
+        
+        // common documents
+        public readonly static FileType RTF = new FileType(new byte?[] { 0x7B, 0x5C, 0x72, 0x74, 0x66, 0x31 }, "rtf", "application/rtf");
+        public readonly static FileType PDF = new FileType(new byte?[] { 0x25, 0x50, 0x44, 0x46 }, "pdf", "application/pdf");
+        
+        // grafics
         public readonly static FileType JPEG = new FileType(new byte?[] { 0xFF, 0xD8, 0xFF }, "jpg", "image/jpeg");
-		public readonly static FileType PNG = new FileType(new byte?[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "png", "image/png");
-		public readonly static FileType GIF = new FileType(new byte?[] { 0x47, 0x49, 0x46, 0x38, null, 0x61 }, "gif", "image/gif");
-		//bmp, tiff
-		
-		
-		public readonly static FileType ZIP = new FileType(new byte?[] { 0x50, 0x4B, 0x03, 0x04 }, "zip", "application/x-compressed");
-		public readonly static FileType RAR = new FileType(new byte?[] { 0x52, 0x61, 0x72, 0x21 }, "rar", "application/x-compressed");
-		
-		
-		// all the file types to be put into one list
+        public readonly static FileType PNG = new FileType(new byte?[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "png", "image/png");
+        public readonly static FileType GIF = new FileType(new byte?[] { 0x47, 0x49, 0x46, 0x38, null, 0x61 }, "gif", "image/gif");
+        //bmp, tiff
+        
+        
+        public readonly static FileType ZIP = new FileType(new byte?[] { 0x50, 0x4B, 0x03, 0x04 }, "zip", "application/x-compressed");
+        public readonly static FileType RAR = new FileType(new byte?[] { 0x52, 0x61, 0x72, 0x21 }, "rar", "application/x-compressed");
+        
+        
+        // all the file types to be put into one list
         private readonly static List<FileType> types = new List<FileType> { 
-			PDF, WORD, EXCEL, JPEG, ZIP, RAR, RTF, PNG, PPT};
+            PDF, WORD, EXCEL, JPEG, ZIP, RAR, RTF, PNG, PPT, GIF};
 
         // number of bytes we read from a file
         private const int MaxHeaderSize = 560;  // some file formats have headers offset to 512 bytes
@@ -88,20 +88,6 @@ namespace FileTypeDetective
             }
             // if none of the types match, return null
             return null;
-        }
-
-        /// <summary>
-        /// Read header of a file and depending on the information in the header
-        /// return object FileType.
-        /// Return null in case when the file type is not identified. 
-        /// Throws Application exception if the file can not be read.
-        /// </summary>
-        /// <param name="FullPath">The full path to the file</param>
-        /// <returns>FileType object or null if type is not identified</returns>
-        public static FileType GetFileType(this string FullPath)
-        {
-            FileInfo fileInfo = new FileInfo(FullPath);
-            return GetFileType(fileInfo);
         }
 
         /// <summary>
@@ -210,20 +196,6 @@ namespace FileTypeDetective
         }
 
         /// <summary>
-        /// Determines whether the specified file is of provided type
-        /// </summary>
-        /// <param name="fullPath">The full path to the file</param>
-        /// <param name="type">The type.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified full path is type; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool isType(this String fullPath, FileType type)
-        {
-            FileInfo info = new FileInfo(fullPath);
-            return info.isType(type);
-        }
-
-        /// <summary>
         /// Determines whether the specified file is PDF.
         /// </summary>
         /// <param name="file">The file.</param>
@@ -235,17 +207,6 @@ namespace FileTypeDetective
             return file.isType(PDF);
         }
 
-        /// <summary>
-        /// Determines whether the specified file is PDF.
-        /// </summary>
-        /// <param name="fullPath">The full path.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified full path is PDF; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool isPDF(this string fullPath)
-        {
-            return fullPath.isType(PDF);
-        }
 
         /// <summary>
         /// Determines whether the specified file info is ms-word document file
@@ -259,17 +220,6 @@ namespace FileTypeDetective
             return fileInfo.isType(WORD);
         }
 
-        /// <summary>
-        /// Determines whether the specified file info is ms-word document file
-        /// </summary>
-        /// <param name="fullPath">The full path.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified full path is PDF; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool isWord(this string fullPath)
-        {
-            return fullPath.isType(WORD);
-        }
 
         /// <summary>
         /// Determines whether the specified file is zip archive
@@ -284,18 +234,6 @@ namespace FileTypeDetective
         }
         
         /// <summary>
-        /// Determines whether the specified file is zip archive
-        /// </summary>
-        /// <param name="fullPath">The full path.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified full path is zip file; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool isZip(this String fullPath)
-        {
-            return fullPath.isType(ZIP);
-        }
-
-        /// <summary>
         /// Determines whether the specified file is MS Excel spreadsheet
         /// </summary>
         /// <param name="fileInfo">The FileInfo</param>
@@ -305,18 +243,6 @@ namespace FileTypeDetective
         public static bool isExcel(this FileInfo fileInfo)
         {
             return fileInfo.isType(EXCEL);
-        }
-
-        /// <summary>
-        /// Determines whether the specified file is MS Excel spreadsheet
-        /// </summary>
-        /// <param name="fullPath">The full path.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified full path is excel; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool isExcel(this String fullPath)
-        {
-            return fullPath.isType(EXCEL);
         }
 
         /// <summary>
@@ -332,18 +258,6 @@ namespace FileTypeDetective
         }
 
         /// <summary>
-        /// Determines whether the specified file is JPEG image
-        /// </summary>
-        /// <param name="fullPath">The full path to the file</param>
-        /// <returns>
-        ///   <c>true</c> if the specified full path is JPEG; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool isJpeg(this String fullPath)
-        {
-            return fullPath.isType(JPEG);
-        }
-
-        /// <summary>
         /// Determines whether the specified file is RAR-archive.
         /// </summary>
         /// <param name="fileInfo">The FileInfo.</param>
@@ -353,18 +267,6 @@ namespace FileTypeDetective
         public static bool isRar(this FileInfo fileInfo)
         {
             return fileInfo.isType(RAR);
-        }
-
-        /// <summary>
-        /// Determines whether the specified file is RAR-archive.
-        /// </summary>
-        /// <param name="fullPath">The full path to the file</param>
-        /// <returns>
-        ///   <c>true</c> if the specified full path is RAR; otherwise, <c>false</c>.
-        /// </returns>
-        public static bool isRar(this String fullPath)
-        {
-            return fullPath.isType(RAR);
         }
 
         /// <summary>
@@ -380,47 +282,41 @@ namespace FileTypeDetective
         }
 
         /// <summary>
-        /// Determines whether the specified file is RTF document.
+        /// Determines whether the specified file is PNG.
         /// </summary>
-        /// <param name="fullPath">The full path to the file</param>
+        /// <param name="fileInfo">The FileInfo object</param>
         /// <returns>
-        ///   <c>true</c> if the specified full path is RTF; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified file info is PNG; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isRtf(this String fullPath)
+        public static bool isPng(this FileInfo fileInfo)
         {
-            return fullPath.isType(RTF);
-        } 
-		
-		public static bool isPng(this FileInfo fileInfo)
-		{
-			return fileInfo.isType(PNG);
-		}
-		
-		public static bool isPng(this String fullPath)
-		{
-			return fullPath.isType(PNG);
-		}
-		
-		public static bool isPpt(this FileInfo fileInfo)
-		{
-			return fileInfo.isType(PPT);
-		}
-		
-		public static bool isPpt(this String fullPath)
-		{
-			return fullPath.isType(PPT);
-		}
-		
-		public static bool isGif(this FileInfo fileInfo)
-		{
-			return fileInfo.isType(GIF);
-		}
-		
-		public static bool isGif(this String fullPath)
-		{
-			return fullPath.isType(GIF);
-		}
-		
+            return fileInfo.isType(PNG);
+        }
+
+        /// <summary>
+        /// Determines whether the specified file is Microsoft PowerPoint Presentation
+        /// </summary>
+        /// <param name="fileInfo">The FileInfo object.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified file info is PPT; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool isPpt(this FileInfo fileInfo)
+        {
+            return fileInfo.isType(PPT);
+        }
+
+        /// <summary>
+        /// Determines whether the specified file is GIF image
+        /// </summary>
+        /// <param name="fileInfo">The FileInfo object</param>
+        /// <returns>
+        ///   <c>true</c> if the specified file info is GIF; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool isGif(this FileInfo fileInfo)
+        {
+            return fileInfo.isType(GIF);
+        }
+        
         #endregion
     }
 

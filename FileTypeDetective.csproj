@@ -62,7 +62,7 @@
     <PostBuildEvent>IF "$(ConfigurationName)"=="Debug" Goto Exit
 
 ECHO Building SHFB help file via MSBuild
-ECHO "$(SystemRoot)\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"  /p:CleanIntermediates=True /p:Configuration=Release  "$(SolutionDir)\docs\sandcastleDocs.shfbproj"
+"$(SystemRoot)\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"  /p:CleanIntermediates=True /p:Configuration=Release  "$(SolutionDir)\docs\sandcastleDocs.shfbproj"
 
 rmdir /Q /S tmp
 mkdir tmp\src
