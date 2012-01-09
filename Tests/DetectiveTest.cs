@@ -21,8 +21,8 @@ namespace FileTypeDetective.Tests
         FileInfo rarFile;
         FileInfo rtfFile;
         FileInfo noTypeFile;
-		FileInfo pngFile;
-		FileInfo pptFile;
+        FileInfo pngFile;
+        FileInfo pptFile;
         FileInfo gifFile;
         private readonly string FilesDir = "Files";
 
@@ -54,7 +54,7 @@ namespace FileTypeDetective.Tests
             zipFile = new FileInfo(Path.Combine(basePath, "zipFile.zip"));
             rarFile = new FileInfo(Path.Combine(basePath, "rarFile.rar"));
             rtfFile = new FileInfo(Path.Combine(basePath, "rtfFile.rtf"));
-			pngFile = new FileInfo(Path.Combine(basePath, "pngFile.png"));
+            pngFile = new FileInfo(Path.Combine(basePath, "pngFile.png"));
             pptFile = new FileInfo(Path.Combine(basePath, "pptFile.ppt"));
             gifFile = new FileInfo(Path.Combine(basePath, "gif.gif"));
         }
@@ -65,7 +65,7 @@ namespace FileTypeDetective.Tests
             FileType empty = emptyFile.GetFileType();
             Assert.IsNull(empty);
 
-            empty = emptyFile.FullName.GetFileType();
+            empty = emptyFile.GetFileType();
             Assert.IsNull(empty);
 
         }
@@ -133,48 +133,48 @@ namespace FileTypeDetective.Tests
             Assert.IsFalse(noTypeFile.isRtf());
 
         }
-		
-		[Test]
-		public void isFileOfTypesCSVTest()
-		{
-			Assert.IsTrue( jpegFile.isFileOfTypes("JPG,RAR,DOC,XLS") );
-			Assert.IsFalse(jpegFile.isFileOfTypes(""));
-			Assert.IsFalse(jpegFile.isFileOfTypes("RAR"));
-			Assert.IsTrue(jpegFile.isFileOfTypes("JPG"));
-		}
-		
-		[Test]
-		public void isFileOfTypesList()
-		{
-			Assert.IsTrue(jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG}));
-			Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType> {Detective.RAR}));
-			Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType>()));
-			Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType>{Detective.RTF, Detective.PDF, Detective.EXCEL}));
-			Assert.IsTrue(jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG, Detective.RTF, Detective.PDF, Detective.EXCEL}));
-			
-		}
-		
-		[Test]
-		public void isPngTest()
-		{
-			Assert.IsTrue(pngFile.isPng());
-			Assert.IsFalse(pngFile.isPDF());
-			Assert.IsFalse(pngFile.isJpeg());
-		}
-		
-		[Test]
-		public void isPptTest()
-		{
-			Assert.IsTrue(pptFile.isPpt());
-			Assert.IsFalse(pptFile.isJpeg());
-			Assert.IsFalse(pptFile.isPng());
-		}
-		
-		[Test]
-		public void isGifTest()
-		{
+        
+        [Test]
+        public void isFileOfTypesCSVTest()
+        {
+            Assert.IsTrue( jpegFile.isFileOfTypes("JPG,RAR,DOC,XLS") );
+            Assert.IsFalse(jpegFile.isFileOfTypes(""));
+            Assert.IsFalse(jpegFile.isFileOfTypes("RAR"));
+            Assert.IsTrue(jpegFile.isFileOfTypes("JPG"));
+        }
+        
+        [Test]
+        public void isFileOfTypesList()
+        {
+            Assert.IsTrue(jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG}));
+            Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType> {Detective.RAR}));
+            Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType>()));
+            Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType>{Detective.RTF, Detective.PDF, Detective.EXCEL}));
+            Assert.IsTrue(jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG, Detective.RTF, Detective.PDF, Detective.EXCEL}));
+            
+        }
+        
+        [Test]
+        public void isPngTest()
+        {
+            Assert.IsTrue(pngFile.isPng());
+            Assert.IsFalse(pngFile.isPDF());
+            Assert.IsFalse(pngFile.isJpeg());
+        }
+        
+        [Test]
+        public void isPptTest()
+        {
+            Assert.IsTrue(pptFile.isPpt());
+            Assert.IsFalse(pptFile.isJpeg());
+            Assert.IsFalse(pptFile.isPng());
+        }
+        
+        [Test]
+        public void isGifTest()
+        {
             Assert.IsFalse(gifFile.isPDF());
             Assert.IsTrue(gifFile.isGif());
-		}
+        }
     }
 }
