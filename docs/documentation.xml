@@ -4,31 +4,6 @@
         <name>FileTypeDetective</name>
     </assembly>
     <members>
-        <member name="T:FileTypeDetective.FileType">
-            <summary>
-            Little data structure to hold information about file types. 
-            Holds information about binary header at the start of the file
-            </summary>
-        </member>
-        <member name="M:FileTypeDetective.FileType.#ctor(System.Nullable{System.Byte}[],System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:FileTypeDetective.FileType"/> class.
-            Default construction with the header offset being set to zero by default
-            </summary>
-            <param name="header">Byte array with header.</param>
-            <param name="extension">String with extension.</param>
-            <param name="mime">The description of MIME.</param>
-        </member>
-        <member name="M:FileTypeDetective.FileType.#ctor(System.Nullable{System.Byte}[],System.Int32,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:FileTypeDetective.FileType"/> struct.
-            Takes the details of offset for the header
-            </summary>
-            <param name="header">Byte array with header.</param>
-            <param name="offset">The header offset - how far into the file we need to read the header</param>
-            <param name="extension">String with extension.</param>
-            <param name="mime">The description of MIME.</param>
-        </member>
         <member name="T:FileTypeDetective.Detective">
             <summary>
             Helper class to identify file type by the file header, not file extension.
@@ -178,6 +153,48 @@
             <returns>
               <c>true</c> if the specified file info is GIF; otherwise, <c>false</c>.
             </returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isExe(System.IO.FileInfo)">
+            <summary>
+            Checks if the file is executable
+            </summary>
+            <param name="fileInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileTypeDetective.Detective.isMsi(System.IO.FileInfo)">
+            <summary>
+            Check if the file is Microsoft Installer.
+            Beware, many microsoft file types are starting with the same header. 
+            So use this one with caution. If you think the file is MSI, just need to confirm, use this method. 
+            But it could be MSWord or MSExcel, or Powerpoint... 
+            </summary>
+            <param name="fileInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FileTypeDetective.FileType">
+            <summary>
+            Little data structure to hold information about file types. 
+            Holds information about binary header at the start of the file
+            </summary>
+        </member>
+        <member name="M:FileTypeDetective.FileType.#ctor(System.Nullable{System.Byte}[],System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:FileTypeDetective.FileType"/> class.
+            Default construction with the header offset being set to zero by default
+            </summary>
+            <param name="header">Byte array with header.</param>
+            <param name="extension">String with extension.</param>
+            <param name="mime">The description of MIME.</param>
+        </member>
+        <member name="M:FileTypeDetective.FileType.#ctor(System.Nullable{System.Byte}[],System.Int32,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:FileTypeDetective.FileType"/> struct.
+            Takes the details of offset for the header
+            </summary>
+            <param name="header">Byte array with header.</param>
+            <param name="offset">The header offset - how far into the file we need to read the header</param>
+            <param name="extension">String with extension.</param>
+            <param name="mime">The description of MIME.</param>
         </member>
     </members>
 </doc>

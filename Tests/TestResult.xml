@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\trailmax\myCode\csharp\FileDetective\Tests\Tests.csproj" total="16" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-03-05" time="22:47:01">
+  <environment nunit-version="2.5.10.11092" clr-version="2.0.50727.5448" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\trailmax\myCode\csharp\FileDetective\Tests" machine-name="QEDILTW730" user="mvasilyev" user-domain="QEDI" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="Project" name="C:\trailmax\myCode\csharp\FileDetective\Tests\Tests.csproj" executed="True" result="Success" success="True" time="0.085" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\trailmax\myCode\csharp\FileDetective\Tests\bin\Debug\Tests.exe" executed="True" result="Success" success="True" time="0.084" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="FileTypeDetective" executed="True" result="Success" success="True" time="0.083" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.082" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="DetectiveTest" executed="True" result="Success" success="True" time="0.080" asserts="0">
+                    <results>
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.EmptyFileTest" executed="True" result="Success" success="True" time="0.004" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isExcelTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isExeTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isFileOfTypesCSVTest" executed="True" result="Success" success="True" time="0.007" asserts="4" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isFileOfTypesList" executed="True" result="Success" success="True" time="0.001" asserts="5" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isGifTest" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isJpegTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isMsiTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isPdfTest" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isPngTest" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isPptTest" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isRarTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isRtfTest" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isWordTest" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.isZipTest" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                      <test-case name="FileTypeDetective.Tests.DetectiveTest.NoFileTest" executed="True" result="Success" success="True" time="0.004" asserts="0" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

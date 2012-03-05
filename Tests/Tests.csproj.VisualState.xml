@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\trailmax\myCode\csharp\FileDetective\Tests\Tests.csproj</TopNode>
+  <SelectedNode>[0-1020]FileTypeDetective.Tests</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\trailmax\myCode\csharp\FileDetective\Tests\Tests.csproj" Expanded="true" />
+    <Node UniqueName="[0-1018]C:\trailmax\myCode\csharp\FileDetective\Tests\bin\Debug\Tests.exe" Expanded="true" />
+    <Node UniqueName="[0-1019]FileTypeDetective" Expanded="true" />
+    <Node UniqueName="[0-1020]FileTypeDetective.Tests" Expanded="true" />
+    <Node UniqueName="[0-1001]FileTypeDetective.Tests.DetectiveTest" Expanded="true" />
+  </Nodes>
+</VisualState>
