@@ -24,6 +24,8 @@ namespace FileTypeDetective.Tests
         FileInfo pngFile;
         FileInfo pptFile;
         FileInfo gifFile;
+        FileInfo exeFile;
+        FileInfo msiFile;
         private readonly string FilesDir = "Files";
 
 
@@ -31,7 +33,7 @@ namespace FileTypeDetective.Tests
         {
             DetectiveTest dt = new DetectiveTest();
             dt.SetUp();
-            dt.isGifTest();
+            dt.isMsiTest();
             return 0;
         }
 
@@ -57,6 +59,8 @@ namespace FileTypeDetective.Tests
             pngFile = new FileInfo(Path.Combine(basePath, "pngFile.png"));
             pptFile = new FileInfo(Path.Combine(basePath, "pptFile.ppt"));
             gifFile = new FileInfo(Path.Combine(basePath, "gif.gif"));
+            exeFile = new FileInfo(Path.Combine(basePath, "cacheCopy.exe"));
+            msiFile = new FileInfo(Path.Combine(basePath, "cacheCopySetup.msi"));
         }
 
         [Test]
@@ -175,6 +179,20 @@ namespace FileTypeDetective.Tests
         {
             Assert.IsFalse(gifFile.isPDF());
             Assert.IsTrue(gifFile.isGif());
+        }
+
+        [Test]
+        public void isExeTest()
+        {
+            Assert.IsFalse(exeFile.isJpeg());
+            Assert.IsTrue(exeFile.isExe());
+        }
+
+        [Test]
+        public void isMsiTest()
+        {
+            Assert.IsFalse(msiFile.isExe());
+            Assert.IsTrue(msiFile.isMsi());
         }
     }
 }
