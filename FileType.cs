@@ -8,10 +8,10 @@
     /// </summary>
     public class FileType
     {
-        public byte?[] header { get; private set; }    // most of the times we only need first 8 bytes, but sometimes extend for 16
-        public int headerOffset { get; private set; }
-        public string extension { get; private set; }
-        public string mime { get; private set; }
+        internal byte?[] Header { get; set; }    // most of the times we only need first 8 bytes, but sometimes extend for 16
+        internal int HeaderOffset { get; set; }
+        internal string Extension { get; set; }
+        internal string Mime { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileType"/> class.
@@ -22,10 +22,10 @@
         /// <param name="mime">The description of MIME.</param>
         public FileType(byte?[] header, string extension, string mime)
         {
-            this.header = header;
-            this.extension = extension;
-            this.mime = mime;
-            this.headerOffset = 0;
+            Header = header;
+            Extension = extension;
+            Mime = mime;
+            HeaderOffset = 0;
         }
 
 
@@ -39,11 +39,11 @@
         /// <param name="mime">The description of MIME.</param>
         public FileType(byte?[] header, int offset, string extension, string mime)
         {
-            this.header = null;
-            this.header = header;
-            this.headerOffset = offset;
-            this.extension = extension;
-            this.mime = mime;
+            this.Header = null;
+            this.Header = header;
+            this.HeaderOffset = offset;
+            this.Extension = extension;
+            this.Mime = mime;
         }
 
 
@@ -55,10 +55,10 @@
 
             FileType otherType = (FileType)other;
 
-            if (this.header != otherType.header) return false;
-            if (this.headerOffset != otherType.headerOffset) return false;
-            if (this.extension != otherType.extension) return false;
-            if (this.mime != otherType.mime) return false;
+            if (this.Header != otherType.Header) return false;
+            if (this.HeaderOffset != otherType.HeaderOffset) return false;
+            if (this.Extension != otherType.Extension) return false;
+            if (this.Mime != otherType.Mime) return false;
 
 
             return true;
@@ -66,7 +66,7 @@
 
         public override string ToString()
         {
-            return extension;
+            return Extension;
         }
     }
 }

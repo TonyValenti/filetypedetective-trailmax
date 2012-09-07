@@ -1,9 +1,6 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using FileTypeDetective;
 using System.IO;
 
 namespace FileTypeDetective.Tests
@@ -11,29 +8,29 @@ namespace FileTypeDetective.Tests
     [TestFixture]
     public class DetectiveTest
     {
-        String basePath;
-        FileInfo emptyFile;
-        FileInfo pdfFile;
-        FileInfo wordFile;
-        FileInfo excelFile;
-        FileInfo jpegFile;
-        FileInfo zipFile;
-        FileInfo rarFile;
-        FileInfo rtfFile;
-        FileInfo noTypeFile;
-        FileInfo pngFile;
-        FileInfo pptFile;
-        FileInfo gifFile;
-        FileInfo exeFile;
-        FileInfo msiFile;
-        private readonly string FilesDir = "Files";
+        String _basePath;
+        FileInfo _emptyFile;
+        FileInfo _pdfFile;
+        FileInfo _wordFile;
+        FileInfo _excelFile;
+        FileInfo _jpegFile;
+        FileInfo _zipFile;
+        FileInfo _rarFile;
+        FileInfo _rtfFile;
+        FileInfo _noTypeFile;
+        FileInfo _pngFile;
+        FileInfo _pptFile;
+        FileInfo _gifFile;
+        FileInfo _exeFile;
+        FileInfo _msiFile;
+        private const string FilesDir = "Files";
 
 
         public static int Main(string[] args)
         {
             DetectiveTest dt = new DetectiveTest();
             dt.SetUp();
-            dt.isMsiTest();
+            dt.IsMsiTest();
             return 0;
         }
 
@@ -41,35 +38,35 @@ namespace FileTypeDetective.Tests
         protected void SetUp()
         {
             // we need to get base path of the test files 
-            basePath = Path.GetDirectoryName( System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase );
+            _basePath = Path.GetDirectoryName( System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase );
             // remove protocol name
-            basePath = basePath.Replace("file:\\", "");
+            _basePath = _basePath.Replace("file:\\", "");
             // add the Files directory 
-            basePath = Path.Combine(basePath, FilesDir);
+            _basePath = Path.Combine(_basePath, FilesDir);
 
-            noTypeFile = new FileInfo(Path.Combine(basePath, "notypeFile.xxx"));
-            emptyFile = new FileInfo(Path.Combine(basePath, "EmptyFile.txt"));
-            pdfFile = new FileInfo(Path.Combine(basePath, "pdfFile.pdf"));
-            wordFile = new FileInfo(Path.Combine(basePath, "WordFile.doc"));
-            excelFile = new FileInfo(Path.Combine(basePath, "excelFile.xls"));
-            jpegFile = new FileInfo(Path.Combine(basePath, "jpegFile.jpg"));
-            zipFile = new FileInfo(Path.Combine(basePath, "zipFile.zip"));
-            rarFile = new FileInfo(Path.Combine(basePath, "rarFile.rar"));
-            rtfFile = new FileInfo(Path.Combine(basePath, "rtfFile.rtf"));
-            pngFile = new FileInfo(Path.Combine(basePath, "pngFile.png"));
-            pptFile = new FileInfo(Path.Combine(basePath, "pptFile.ppt"));
-            gifFile = new FileInfo(Path.Combine(basePath, "gif.gif"));
-            exeFile = new FileInfo(Path.Combine(basePath, "cacheCopy.exe"));
-            msiFile = new FileInfo(Path.Combine(basePath, "cacheCopySetup.msi"));
+            _noTypeFile = new FileInfo(Path.Combine(_basePath, "notypeFile.xxx"));
+            _emptyFile = new FileInfo(Path.Combine(_basePath, "EmptyFile.txt"));
+            _pdfFile = new FileInfo(Path.Combine(_basePath, "pdfFile.pdf"));
+            _wordFile = new FileInfo(Path.Combine(_basePath, "WordFile.doc"));
+            _excelFile = new FileInfo(Path.Combine(_basePath, "excelFile.xls"));
+            _jpegFile = new FileInfo(Path.Combine(_basePath, "jpegFile.jpg"));
+            _zipFile = new FileInfo(Path.Combine(_basePath, "zipFile.zip"));
+            _rarFile = new FileInfo(Path.Combine(_basePath, "rarFile.rar"));
+            _rtfFile = new FileInfo(Path.Combine(_basePath, "rtfFile.rtf"));
+            _pngFile = new FileInfo(Path.Combine(_basePath, "pngFile.png"));
+            _pptFile = new FileInfo(Path.Combine(_basePath, "pptFile.ppt"));
+            _gifFile = new FileInfo(Path.Combine(_basePath, "gif.gif"));
+            _exeFile = new FileInfo(Path.Combine(_basePath, "cacheCopy.exe"));
+            _msiFile = new FileInfo(Path.Combine(_basePath, "cacheCopySetup.msi"));
         }
 
         [Test]
         public void EmptyFileTest()
         {
-            FileType empty = emptyFile.GetFileType();
+            FileType empty = _emptyFile.GetFileType();
             Assert.IsNull(empty);
 
-            empty = emptyFile.GetFileType();
+            empty = _emptyFile.GetFileType();
             Assert.IsNull(empty);
 
         }
@@ -84,115 +81,115 @@ namespace FileTypeDetective.Tests
                 Assert.Fail("Exists file that should not exist");
             }
 
-            FileType type = noFile.GetFileType();
+            noFile.GetFileType();
         }
 
         [Test]
-        public void isPdfTest()
+        public void IsPdfTest()
         {
-            Assert.IsTrue(pdfFile.isPDF());
-            Assert.IsFalse(noTypeFile.isPDF());
+            Assert.IsTrue(_pdfFile.IsPdf());
+            Assert.IsFalse(_noTypeFile.IsPdf());
         }
 
         [Test]
-        public void isWordTest()
+        public void IsWordTest()
         {
-            Assert.True(wordFile.isWord());
-            Assert.False(noTypeFile.isWord());
+            Assert.True(_wordFile.IsWord());
+            Assert.False(_noTypeFile.IsWord());
         }
 
         [Test]
-        public void isExcelTest()
+        public void IsExcelTest()
         {
-            Assert.True(excelFile.isExcel());
-            Assert.False(noTypeFile.isExcel());
+            Assert.True(_excelFile.IsExcel());
+            Assert.False(_noTypeFile.IsExcel());
         }
 
         [Test]
-        public void isJpegTest()
+        public void IsJpegTest()
         {
-            Assert.IsTrue(jpegFile.isJpeg());
-            Assert.IsFalse(noTypeFile.isJpeg());
+            Assert.IsTrue(_jpegFile.IsJpeg());
+            Assert.IsFalse(_noTypeFile.IsJpeg());
         }
 
         [Test]
-        public void isZipTest()
+        public void IsZipTest()
         {
-            Assert.IsTrue(zipFile.isZip());
-            Assert.IsFalse(noTypeFile.isZip());
+            Assert.IsTrue(_zipFile.IsZip());
+            Assert.IsFalse(_noTypeFile.IsZip());
         }
 
         [Test]
-        public void isRarTest()
+        public void IsRarTest()
         {
-            Assert.IsTrue(rarFile.isRar());
-            Assert.IsFalse(noTypeFile.isRar());
+            Assert.IsTrue(_rarFile.IsRar());
+            Assert.IsFalse(_noTypeFile.IsRar());
         }
 
 
         [Test]
-        public void isRtfTest()
+        public void IsRtfTest()
         {
-            Assert.IsTrue(rtfFile.isRtf());
-            Assert.IsFalse(noTypeFile.isRtf());
+            Assert.IsTrue(_rtfFile.IsRtf());
+            Assert.IsFalse(_noTypeFile.IsRtf());
 
-        }
-        
-        [Test]
-        public void isFileOfTypesCSVTest()
-        {
-            Assert.IsTrue( jpegFile.isFileOfTypes("JPG,RAR,DOC,XLS") );
-            Assert.IsFalse(jpegFile.isFileOfTypes(""));
-            Assert.IsFalse(jpegFile.isFileOfTypes("RAR"));
-            Assert.IsTrue(jpegFile.isFileOfTypes("JPG"));
         }
         
         [Test]
-        public void isFileOfTypesList()
+        public void IsFileOfTypesCsvTest()
         {
-            Assert.IsTrue(jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG}));
-            Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType> {Detective.RAR}));
-            Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType>()));
-            Assert.IsFalse(jpegFile.isFileOfTypes(new List<FileType>{Detective.RTF, Detective.PDF, Detective.EXCEL}));
-            Assert.IsTrue(jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG, Detective.RTF, Detective.PDF, Detective.EXCEL}));
+            Assert.IsTrue( _jpegFile.isFileOfTypes("JPG,RAR,DOC,XLS") );
+            Assert.IsFalse(_jpegFile.isFileOfTypes(""));
+            Assert.IsFalse(_jpegFile.isFileOfTypes("RAR"));
+            Assert.IsTrue(_jpegFile.isFileOfTypes("JPG"));
+        }
+        
+        [Test]
+        public void IsFileOfTypesList()
+        {
+            Assert.IsTrue(_jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG}));
+            Assert.IsFalse(_jpegFile.isFileOfTypes(new List<FileType> {Detective.RAR}));
+            Assert.IsFalse(_jpegFile.isFileOfTypes(new List<FileType>()));
+            Assert.IsFalse(_jpegFile.isFileOfTypes(new List<FileType>{Detective.RTF, Detective.PDF, Detective.EXCEL}));
+            Assert.IsTrue(_jpegFile.isFileOfTypes(new List<FileType> {Detective.JPEG, Detective.RTF, Detective.PDF, Detective.EXCEL}));
             
         }
         
         [Test]
-        public void isPngTest()
+        public void IsPngTest()
         {
-            Assert.IsTrue(pngFile.isPng());
-            Assert.IsFalse(pngFile.isPDF());
-            Assert.IsFalse(pngFile.isJpeg());
+            Assert.IsTrue(_pngFile.IsPng());
+            Assert.IsFalse(_pngFile.IsPdf());
+            Assert.IsFalse(_pngFile.IsJpeg());
         }
         
         [Test]
-        public void isPptTest()
+        public void IsPptTest()
         {
-            Assert.IsTrue(pptFile.isPpt());
-            Assert.IsFalse(pptFile.isJpeg());
-            Assert.IsFalse(pptFile.isPng());
+            Assert.IsTrue(_pptFile.IsPpt());
+            Assert.IsFalse(_pptFile.IsJpeg());
+            Assert.IsFalse(_pptFile.IsPng());
         }
         
         [Test]
-        public void isGifTest()
+        public void IsGifTest()
         {
-            Assert.IsFalse(gifFile.isPDF());
-            Assert.IsTrue(gifFile.isGif());
+            Assert.IsFalse(_gifFile.IsPdf());
+            Assert.IsTrue(_gifFile.IsGif());
         }
 
         [Test]
-        public void isExeTest()
+        public void IsExeTest()
         {
-            Assert.IsFalse(exeFile.isJpeg());
-            Assert.IsTrue(exeFile.isExe());
+            Assert.IsFalse(_exeFile.IsJpeg());
+            Assert.IsTrue(_exeFile.IsExe());
         }
 
         [Test]
-        public void isMsiTest()
+        public void IsMsiTest()
         {
-            Assert.IsFalse(msiFile.isExe());
-            Assert.IsTrue(msiFile.isMsi());
+            Assert.IsFalse(_msiFile.IsExe());
+            Assert.IsTrue(_msiFile.IsMsi());
         }
     }
 }

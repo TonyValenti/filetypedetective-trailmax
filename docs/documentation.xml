@@ -54,7 +54,7 @@
             <param name="CSV">The CSV String with extensions</param>
             <returns>List of FileTypes</returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isType(System.IO.FileInfo,FileTypeDetective.FileType)">
+        <member name="M:FileTypeDetective.Detective.IsType(System.IO.FileInfo,FileTypeDetective.FileType)">
             <summary>
             Determines whether the specified file is of provided type
             </summary>
@@ -64,7 +64,7 @@
               <c>true</c> if the specified file is type; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isPDF(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsPdf(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is PDF.
             </summary>
@@ -73,7 +73,7 @@
               <c>true</c> if the specified file is PDF; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isWord(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsWord(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file info is ms-word document file
             </summary>
@@ -82,7 +82,7 @@
               <c>true</c> if the specified file info is doc; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isZip(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsZip(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is zip archive
             </summary>
@@ -91,7 +91,7 @@
               <c>true</c> if the specified file info is zip; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isExcel(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsExcel(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is MS Excel spreadsheet
             </summary>
@@ -100,7 +100,7 @@
               <c>true</c> if the specified file info is excel; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isJpeg(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsJpeg(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is JPEG image
             </summary>
@@ -109,7 +109,7 @@
               <c>true</c> if the specified file info is JPEG; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isRar(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsRar(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is RAR-archive.
             </summary>
@@ -118,7 +118,7 @@
               <c>true</c> if the specified file info is RAR; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isRtf(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsRtf(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is RTF document.
             </summary>
@@ -127,7 +127,7 @@
               <c>true</c> if the specified file is RTF; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isPng(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsPng(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is PNG.
             </summary>
@@ -136,7 +136,7 @@
               <c>true</c> if the specified file info is PNG; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isPpt(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsPpt(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is Microsoft PowerPoint Presentation
             </summary>
@@ -145,7 +145,7 @@
               <c>true</c> if the specified file info is PPT; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isGif(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsGif(System.IO.FileInfo)">
             <summary>
             Determines whether the specified file is GIF image
             </summary>
@@ -154,17 +154,17 @@
               <c>true</c> if the specified file info is GIF; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isExe(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsExe(System.IO.FileInfo)">
             <summary>
             Checks if the file is executable
             </summary>
             <param name="fileInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:FileTypeDetective.Detective.isMsi(System.IO.FileInfo)">
+        <member name="M:FileTypeDetective.Detective.IsMsi(System.IO.FileInfo)">
             <summary>
             Check if the file is Microsoft Installer.
-            Beware, many microsoft file types are starting with the same header. 
+            Beware, many Microsoft file types are starting with the same header. 
             So use this one with caution. If you think the file is MSI, just need to confirm, use this method. 
             But it could be MSWord or MSExcel, or Powerpoint... 
             </summary>

@@ -26,7 +26,7 @@ namespace FileTypeDetective
         public readonly static FileType RTF = new FileType(new byte?[] { 0x7B, 0x5C, 0x72, 0x74, 0x66, 0x31 }, "rtf", "application/rtf");
         public readonly static FileType PDF = new FileType(new byte?[] { 0x25, 0x50, 0x44, 0x46 }, "pdf", "application/pdf");
         
-        // grafics
+        // graphics
         public readonly static FileType JPEG = new FileType(new byte?[] { 0xFF, 0xD8, 0xFF }, "jpg", "image/jpeg");
         public readonly static FileType PNG = new FileType(new byte?[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }, "png", "image/png");
         public readonly static FileType GIF = new FileType(new byte?[] { 0x47, 0x49, 0x46, 0x38, null, 0x61 }, "gif", "image/gif");
@@ -66,11 +66,11 @@ namespace FileTypeDetective
             foreach (FileType type in types)
             {
                 int matchingCount = 0;
-                for (int i = 0; i < type.header.Length; i++)
+                for (int i = 0; i < type.Header.Length; i++)
                 {
                     // if file offset is not set to zero, we need to take this into account when comparing.
                     // if byte in type.header is set to null, means this byte is variable, ignore it
-                    if (type.header[i] != null && type.header[i] != fileHeader[i+type.headerOffset])
+                    if (type.Header[i] != null && type.Header[i] != fileHeader[i+type.HeaderOffset])
                     {
                         // if one of the bytes does not match, move on to the next type
                         matchingCount = 0;
@@ -81,7 +81,7 @@ namespace FileTypeDetective
                         matchingCount++;
                     }
                 }
-                if (matchingCount == type.header.Length)
+                if (matchingCount == type.Header.Length)
                 {
                     // if all the bytes match, return the type
                     return type;
@@ -165,7 +165,7 @@ namespace FileTypeDetective
 
             foreach (FileType type in types)
             {
-                if (extensions.Contains(type.extension.ToUpper()))
+                if (extensions.Contains(type.Extension.ToUpper()))
                 {
                     result.Add(type);
                 }
@@ -186,7 +186,7 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file is type; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isType(this FileInfo file, FileType type)
+        public static bool IsType(this FileInfo file, FileType type)
         {
             FileType actualType = GetFileType(file);
 
@@ -203,9 +203,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file is PDF; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isPDF(this FileInfo file)
+        public static bool IsPdf(this FileInfo file)
         {
-            return file.isType(PDF);
+            return file.IsType(PDF);
         }
 
 
@@ -216,9 +216,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is doc; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isWord(this FileInfo fileInfo)
+        public static bool IsWord(this FileInfo fileInfo)
         {
-            return fileInfo.isType(WORD);
+            return fileInfo.IsType(WORD);
         }
 
 
@@ -229,9 +229,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is zip; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isZip(this FileInfo fileInfo)
+        public static bool IsZip(this FileInfo fileInfo)
         {
-            return fileInfo.isType(ZIP);
+            return fileInfo.IsType(ZIP);
         }
         
         /// <summary>
@@ -241,9 +241,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is excel; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isExcel(this FileInfo fileInfo)
+        public static bool IsExcel(this FileInfo fileInfo)
         {
-            return fileInfo.isType(EXCEL);
+            return fileInfo.IsType(EXCEL);
         }
 
         /// <summary>
@@ -253,9 +253,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is JPEG; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isJpeg(this FileInfo fileInfo)
+        public static bool IsJpeg(this FileInfo fileInfo)
         {
-            return fileInfo.isType(JPEG);
+            return fileInfo.IsType(JPEG);
         }
 
         /// <summary>
@@ -265,9 +265,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is RAR; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isRar(this FileInfo fileInfo)
+        public static bool IsRar(this FileInfo fileInfo)
         {
-            return fileInfo.isType(RAR);
+            return fileInfo.IsType(RAR);
         }
 
         /// <summary>
@@ -277,9 +277,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file is RTF; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isRtf(this FileInfo fileInfo)
+        public static bool IsRtf(this FileInfo fileInfo)
         {
-            return fileInfo.isType(RTF);
+            return fileInfo.IsType(RTF);
         }
 
         /// <summary>
@@ -289,9 +289,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is PNG; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isPng(this FileInfo fileInfo)
+        public static bool IsPng(this FileInfo fileInfo)
         {
-            return fileInfo.isType(PNG);
+            return fileInfo.IsType(PNG);
         }
 
         /// <summary>
@@ -301,9 +301,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is PPT; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isPpt(this FileInfo fileInfo)
+        public static bool IsPpt(this FileInfo fileInfo)
         {
-            return fileInfo.isType(PPT);
+            return fileInfo.IsType(PPT);
         }
 
         /// <summary>
@@ -313,9 +313,9 @@ namespace FileTypeDetective
         /// <returns>
         ///   <c>true</c> if the specified file info is GIF; otherwise, <c>false</c>.
         /// </returns>
-        public static bool isGif(this FileInfo fileInfo)
+        public static bool IsGif(this FileInfo fileInfo)
         {
-            return fileInfo.isType(GIF);
+            return fileInfo.IsType(GIF);
         }
 
 
@@ -324,24 +324,24 @@ namespace FileTypeDetective
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
-        public static bool isExe(this FileInfo fileInfo)
+        public static bool IsExe(this FileInfo fileInfo)
         {
-            return fileInfo.isType(EXE);
+            return fileInfo.IsType(EXE);
         }
 
 
         /// <summary>
         /// Check if the file is Microsoft Installer.
-        /// Beware, many microsoft file types are starting with the same header. 
+        /// Beware, many Microsoft file types are starting with the same header. 
         /// So use this one with caution. If you think the file is MSI, just need to confirm, use this method. 
         /// But it could be MSWord or MSExcel, or Powerpoint... 
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
-        public static bool isMsi(this FileInfo fileInfo)
+        public static bool IsMsi(this FileInfo fileInfo)
         {
             // MSI has a generic DOCFILE header. Also it matches PPT files
-            return fileInfo.isType(PPT) || fileInfo.isType(MSDOC);
+            return fileInfo.IsType(PPT) || fileInfo.IsType(MSDOC);
         }
         #endregion
     }
