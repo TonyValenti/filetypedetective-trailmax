@@ -1,3 +1,5 @@
+*This project is pretty much abandoned. But there is a fork on GitHub: https://github.com/Muraad/Mime-Detective These guys have a lot more types detectable, but no NuGet package yet -(*
+
 # Description
 Library to decide what type of file we are working with. Detects file types by header, not by file extension.
 
